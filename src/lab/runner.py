@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 import tempfile
 import shutil
-from datetime import datetime
+from datetime import datetime, timezone
 
 from langchain_core.messages import AIMessage, ToolMessage
 from langchain_core.callbacks import UsageMetadataCallbackHandler
@@ -81,7 +81,7 @@ def run_task(task_id: str, condition: str, results_dir="results", model=None, re
         "condition": condition, 
         "role": task.role, 
         "error": None, 
-        "timestamp": datetime.utcnow().isoformat(), 
+        "timestamp": datetime.now(timezone.utc).isoformat(), 
         "seconds": 0, 
         "final_message": "", 
         "checks": [], 
